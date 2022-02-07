@@ -8,6 +8,7 @@ Sub AllStocksAnalysisRefactored()
     
     'Format the output sheet on All Stocks Analysis worksheet
     Worksheets("All Stocks Analysis").Activate
+    
     Range("A1").Value = "All Stocks (" + yearValue + ")"
     
     'Create a header row
@@ -37,39 +38,42 @@ Sub AllStocksAnalysisRefactored()
     'Get the number of rows to loop over
     RowCount = Cells(Rows.Count, "A").End(xlUp).Row
     
-    '1a) Create a ticker Index. Set the index to zero.
-    Dim tickerIndex As Integer
-    tickerIndex = 0
+    '1a) Create a ticker Index
+    tickerIndex=0
 
-    '1b) Create three output arrays.
-    Dim tickerVolumes(12) As Long
-    Dim tickerStartingPrices(12) As Single
-    Dim tickerEndingPrices(12) As Single
+    '1b) Create three output arrays   
+    Dim tickerVolumes as Long
+    Dim tickerStartingPrices as Single
+    Dim tickerEndingPrices as Single
     
-    ''2a) Create a for loop to initialize the tickerVolumes to zero.
-    For i = 0 To 11
-    tickerVolumes(i) = 0
-    Next i
-    
-    ''2b) Loop over all the rows in the spreadsheet.
+    ''2a) Create a for loop to initialize the tickerVolumes to zero. 
+    for i=0-11
+        tickerVolumes=0
+    next i
+        
+    ''2b) Loop over all the rows in the spreadsheet. 
     For i = 2 To RowCount
-    
-        '3a) Increase volume for current ticker
         tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
+        '3a) Increase volume for current ticker
+        totalVolume = totalVolume+Cells(j,i).value
         
         '3b) Check if the current row is the first row with the selected tickerIndex.
-        If Cells(i, 1).Value <> Cells(i - 1, 1).Value Then
-            tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
-        End If
+        'If  Then
+            
+            
+            
+        'End If
         
         '3c) check if the current row is the last row with the selected ticker
-        If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
-            tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
-        
-            '3d Increase the tickerIndex.
-            tickerIndex = tickerIndex + 1
+         'If the next row’s ticker doesn’t match, increase the tickerIndex.
+        'If  Then
             
-        End If
+            
+
+            '3d Increase the tickerIndex. 
+            
+            
+        'End If
     
     Next i
     
@@ -78,10 +82,7 @@ Sub AllStocksAnalysisRefactored()
         
         Worksheets("All Stocks Analysis").Activate
         
-        Cells(4 + i, 1).Value = tickers(i)
-        Cells(4 + i, 2).Value = tickerVolumes(i)
-        Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
-
+        
     Next i
     
     'Formatting
