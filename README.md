@@ -10,7 +10,7 @@ I added a macro button for the original code and another button to clear the out
 
 Then I refactored the code to loop through the tickers and input into arrays to store the data. Final data output for the refactor is all at once. This greatly increased the speed of the code running.
 
-![]()
+![](./Resources/2017_old.PNG)
 
 ![](./Resources/2018_old.PNG)
 
